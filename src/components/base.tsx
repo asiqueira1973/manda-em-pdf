@@ -212,24 +212,40 @@ export function Celula({
 }) {
   const { t } = useTema();
   const cor = destrutiva ? t.erro : acao ? t.acao : t.texto;
-  return (
-    <Pressable
-      accessibilityRole={aoTocar ? 'button' : undefined}
-      accessibilityLabel={titulo}
-      accessibilityState={{ disabled: !!desabilitada }}
-      disabled={desabilitada || !aoTocar}
-      onPress={aoTocar}
-      style={({ pressed }) => [
-        est.celula,
-        { backgroundColor: pressed && aoTocar ? t.preenchimentoSutil : 'transparent', opacity: desabilitada ? 0.45 : 1 },
-      ]}
-    >
+
+  const conteudo = (
+    <>
       <Text style={[TIPO.corpo, { color: cor, flex: 1 }]} numberOfLines={1}>
         {titulo}
       </Text>
       {valor ? <Text style={[TIPO.corpo, { color: t.textoSecundario }]}>{valor}</Text> : null}
       {direita}
       {chevron ? <Ionicons name="chevron-forward" size={16} color={t.textoTerciario} /> : null}
+    </>
+  );
+
+  // A célula só vira Pressable quando ela mesma faz alguma coisa. Um Pressable
+  // desabilitado em volta engoliria o toque de um filho interativo — foi
+  // exatamente isso que travou o interruptor de OCR na tela de Opções.
+  if (!aoTocar) {
+    return (
+      <View style={[est.celula, { opacity: desabilitada ? 0.45 : 1 }]}>{conteudo}</View>
+    );
+  }
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={titulo}
+      accessibilityState={{ disabled: !!desabilitada }}
+      disabled={desabilitada}
+      onPress={aoTocar}
+      style={({ pressed }) => [
+        est.celula,
+        { backgroundColor: pressed ? t.preenchimentoSutil : 'transparent', opacity: desabilitada ? 0.45 : 1 },
+      ]}
+    >
+      {conteudo}
     </Pressable>
   );
 }

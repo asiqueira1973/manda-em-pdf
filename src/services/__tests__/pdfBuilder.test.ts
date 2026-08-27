@@ -65,13 +65,29 @@ describe('montarHtml', () => {
 
   it('11.9 — a camada de OCR é invisível e fica acima da imagem', () => {
     const html = montarHtml({
-      paginas: [{ ...pagina(), textoOcr: 'CONTRATO DE LOCACAO' }],
+      paginas: [{ ...pagina(), trechosOcr: ['CONTRATO DE LOCACAO'] }],
       tamanhoPapel: 'a4',
       orientacao: 'retrato',
     });
     expect(html).toContain('CONTRATO DE LOCACAO');
     expect(html).toContain('color: transparent');
     expect(html).toContain('z-index: 2');
+  });
+
+  it('11.9 — os trechos são espalhados verticalmente na ordem de leitura', () => {
+    const html = montarHtml({
+      paginas: [{ ...pagina(), trechosOcr: ['PRIMEIRO', 'SEGUNDO', 'TERCEIRO', 'QUARTO'] }],
+      tamanhoPapel: 'a4',
+      orientacao: 'retrato',
+    });
+    // Sem coordenadas do OCR, a altura relativa é a única pista que temos:
+    // o primeiro trecho no topo, o último perto do rodapé.
+    expect(html).toContain('top:0.00%');
+    expect(html).toContain('top:25.00%');
+    expect(html).toContain('top:50.00%');
+    expect(html).toContain('top:75.00%');
+    const ordem = ['PRIMEIRO', 'SEGUNDO', 'TERCEIRO', 'QUARTO'].map((t) => html.indexOf(t));
+    expect(ordem).toEqual([...ordem].sort((a, b) => a - b));
   });
 
   it('não cria camada de OCR quando não há texto reconhecido', () => {
@@ -81,7 +97,7 @@ describe('montarHtml', () => {
 
   it('escapa o texto do OCR para não quebrar a marcação', () => {
     const html = montarHtml({
-      paginas: [{ ...pagina(), textoOcr: '<script>alert(1)</script> & "aspas"' }],
+      paginas: [{ ...pagina(), trechosOcr: ['<script>alert(1)</script> & "aspas"'] }],
       tamanhoPapel: 'a4',
       orientacao: 'retrato',
     });

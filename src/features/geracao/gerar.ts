@@ -84,7 +84,7 @@ export async function gerar(
     for (let i = 0; i < pedido.paginas.length; i++) {
       aoProgredir?.({ fase: 'ocr', pagina: i + 1, total });
       const r = await reconhecerTexto(pedido.paginas[i]!.uri);
-      if (r.texto) paginasPdf[i]!.textoOcr = r.texto;
+      if (r.trechos.length > 0) paginasPdf[i]!.trechosOcr = r.trechos.map((t) => t.texto);
       else ocrFalhou = true;
     }
   }

@@ -2,11 +2,12 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão do documento** | 1.5 |
+| **Versão do documento** | 1.6 |
 | **Responsável de produto** | Alexandre Siqueira (Dab Lab) |
 | **Status** | rascunho — aguardando revisão da seção 24 |
 | **Data** | 26 de agosto de 2026 |
 | **Mudanças na 1.1** | Stack fixada em **Expo SDK 56** (era 57) — nova seção 4.5 com o porquê; piso iOS 16.4; requisitos de máquina (Xcode 26.4, Node 20.19.4, TS 6.0.3); pegadinhas do SDK 56 na tabela 4.2; assunção A13 |
+| **Mudanças na 1.6** | Decisões do Alexandre em 27/08/2026: **importar PDF sai do MVP** (vai para o roadmap 28.8) · prévia e reordenar-por-arrastar ficam como estão · **lançamento iOS primeiro**, Android depois (fecha 25.Q3) · ícone definido |
 | **Mudanças na 1.5** | Exceção declarada na regra de cor: ação de deslizar-para-apagar usa o padrão do iOS (vermelho preenchido) · §10.1 e §11.6 deixam explícito que **Novo PDF** é o caminho sem preset e que não existe cartão "Outros" |
 | **Mudanças na 1.4** | **Reposicionamento:** o foco sai de documento de identidade e vai para **papel que ninguém digitaliza por você** — contrato, imóvel, procuração, nota fiscal e boleto. CPF e título de eleitor saíram; RG e CNH continuam, em segundo plano. §1, §3, §7.2, §8.7, §11.1, §11.6, §11.10 e §15 reescritas · **presets passaram a ser gratuitos** (§11.1) — o que se paga é capacidade, e presets são só pré-configuração · nova regra 11.10.1: piso de compressão do boleto por causa do código de barras |
 | **Mudanças na 1.3** | Stack fixada em **Expo SDK 55** (era 56) — o SDK 56 exige Xcode 26.4, que exige macOS Tahoe, que o Alexandre não tem; §4.5 reescrita · piso iOS 15.1 · pegadinhas trocadas para as do SDK 55 · §16 alinhada aos tokens reais do design system (raio 14, margem 20, cinzas do Hora do Remédio) |
@@ -91,7 +92,7 @@ O Cenário A, em pé e com pressa. É por causa dele que a captura precisa ser a
 |---|---|
 | D1 | Captura por câmera com detecção automática de bordas e correção de perspectiva (scanner nativo) |
 | D2 | Importar imagens da galeria de fotos |
-| D3 | Importar imagens e PDFs do app Arquivos |
+| D3 | Importar **imagens** do app Arquivos *(PDF saiu do MVP — ver 28.8)* |
 | D4 | Montagem do documento: reordenar, girar, recortar e excluir páginas |
 | D5 | Filtros de digitalização: original, preto e branco, escala de cinza, clarear |
 | D6 | Geração do PDF (A4 e Carta, retrato e paisagem) |
@@ -1351,8 +1352,8 @@ Página única; 50 páginas (limite); documento muito escuro; foto tremida; PDF 
 |---|---|---|---|
 | **Q1** | Se a validação **V4/R3** falhar (sem bounding boxes), o OCR sai do MVP ou trocamos de biblioteca? | Alexandre | No fim do épico 8.1 — **bloqueia o 8.8** |
 | **Q2** | Se a validação **V1/R1** falhar nas duas plataformas, vamos para o plano B (config plugin próprio) ou plano C (captura manual)? | Alexandre | No fim do épico 8.1 — **bloqueia todo o resto** |
-| **Q3** | Lançar nas duas lojas ao mesmo tempo, ou iOS primeiro e Android depois de duas semanas de uso real? | Alexandre | Antes do épico 8.11 |
-| **Q4** | O ícone é encomendado ou gerado? Qual a direção? | Alexandre | Antes do épico 8.11 |
+| ~~Q3~~ | ~~Lançar nas duas lojas ao mesmo tempo?~~ **DECIDIDO em 27/08/2026: iOS primeiro.** O Android sai depois, com o aprendizado do uso real. | — | ✅ |
+| ~~Q4~~ | ~~Ícone encomendado ou gerado?~~ **DECIDIDO em 27/08/2026:** folha branca com canto dobrado sobre azul de sistema, com tarja vermelha escrita **PDF** — a palavra no desenho é o que chama atenção na loja. Em `assets/icon.png`. | — | ✅ |
 | **Q5** | O **Quando Vence?** ganha alguma menção cruzada (por exemplo, um item nos Ajustes), ou os apps ficam totalmente independentes? | Alexandre | Antes do épico 8.10 |
 
 ---
@@ -1433,6 +1434,27 @@ Traduzir os textos da seção 15. A seção 17.7 já obriga tudo a viver num arq
 
 ### 28.6 v3 — iPad e tablet
 Layout de duas colunas na montagem, grade maior. Mudança de layout, não de arquitetura.
+
+### 28.8 v2 — Importar PDF
+
+Trazer um PDF de fora e usar as páginas dele na montagem. **Saiu do MVP em
+27/08/2026 por decisão do Alexandre**: transformar página de PDF em imagem
+exige um renderizador (PDFKit no iOS, PdfRenderer no Android) que nenhuma API
+do Expo expõe, e o cenário que motivou o app é papel na mão, não PDF de fora.
+Quando entrar, o caminho mais barato é empacotar o `pdf.js` num WebView
+oculto — funciona offline, ao custo de ~1 MB de bundle e da dependência
+`react-native-webview`.
+
+### 28.9 v2 — Prévia do PDF dentro do app
+
+Hoje a tela 10.11 mostra os dados do arquivo e abre a visualização no sistema.
+Renderizar a página dentro do app depende da mesma dependência de
+visualizador da 28.8 — as duas entram juntas ou nenhuma entra.
+
+### 28.10 v2 — Reordenar páginas arrastando
+
+A montagem reordena por setas ◀ ▶ na página selecionada. Arrastar é o gesto
+do critério 8.3.2 e fica para quando houver aparelho para testar direito.
 
 ### 28.7 v2 — Atalho de compartilhamento do sistema
 Receber imagem compartilhada de outro app e cair direto na montagem. Elimina passos do Cenário B. Exige extensão de compartilhamento no iOS e intent filter no Android.

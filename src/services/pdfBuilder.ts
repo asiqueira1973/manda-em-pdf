@@ -17,8 +17,8 @@ export type PaginaParaPdf = {
   largura: number;
   altura: number;
   filtro: Filtro;
-  /** Texto reconhecido, quando o OCR rodou (regra 11.9). */
-  textoOcr?: string;
+  /** Trechos reconhecidos pelo OCR, na ordem de leitura (regra 11.9). */
+  trechosOcr?: string[];
   /** Faces já posicionadas, usado só na fusão frente e verso (regra 11.6.1). */
   faces?: { base64: string; retangulo: Retangulo }[];
 };
@@ -81,16 +81,31 @@ function htmlPaginaFaces(p: PaginaParaPdf): string {
 /**
  * Camada de texto invisível sobre a página (regra 11.9).
  *
- * O texto fica com `color:transparent` acima da imagem, então o PDF sai
- * pesquisável e copiável sem alterar a aparência. Trecho vazio não entra.
+ * O texto fica com `color:transparent` acima da imagem: o PDF sai pesquisável
+ * e copiável sem mudar NADA na aparência — impresso ou na tela, o arquivo é
+ * idêntico ao PDF sem OCR.
  *
- * LIMITE CONHECIDO: sem as coordenadas de cada palavra (ver DECISOES.md, Q1),
- * o texto vai como um bloco corrido — a busca e a cópia funcionam, mas a
- * seleção não acompanha visualmente a posição na imagem.
+ * LIMITE CONHECIDO (ver DECISOES.md, Q1): a biblioteca de OCR devolve os
+ * trechos em ordem de leitura, mas SEM as coordenadas de cada palavra. Não dá
+ * para colar cada palavra em cima da sua posição real.
+ *
+ * O QUE FAZEMOS COM ISSO: em vez de despejar tudo num bloco só no topo,
+ * espalhamos os trechos verticalmente na proporção da ordem de leitura — o
+ * primeiro trecho no alto, o último embaixo. Assim, quando alguém busca uma
+ * palavra, o realce do visualizador cai na ALTURA aproximadamente certa da
+ * página, em vez de sempre no topo. Não é a posição exata (a horizontal e a
+ * linha continuam aproximadas), mas é o mais perto que dá sem coordenadas.
  */
-function htmlCamadaOcr(texto?: string): string {
-  if (!texto || texto.trim().length === 0) return '';
-  return `<div class="ocr">${escapar(texto)}</div>`;
+function htmlCamadaOcr(trechos?: string[]): string {
+  const limpos = (trechos ?? []).map((t) => t.trim()).filter((t) => t.length > 0);
+  if (limpos.length === 0) return '';
+  const faixas = limpos
+    .map((texto, i) => {
+      const topo = (i / limpos.length) * 100;
+      return `<div class="ocr-linha" style="top:${topo.toFixed(2)}%">${escapar(texto)}</div>`;
+    })
+    .join('');
+  return `<div class="ocr">${faixas}</div>`;
 }
 
 /**
@@ -110,7 +125,7 @@ export function montarHtml(opcoes: OpcoesPdf): string {
   const paginas = opcoes.paginas
     .map((p) => {
       const corpo = p.faces?.length ? htmlPaginaFaces(p) : htmlPaginaSimples(p);
-      return `<section class="pagina">${corpo}${htmlCamadaOcr(p.textoOcr)}</section>`;
+      return `<section class="pagina">${corpo}${htmlCamadaOcr(p.trechosOcr)}</section>`;
     })
     .join('');
 
@@ -139,9 +154,16 @@ export function montarHtml(opcoes: OpcoesPdf): string {
     width: ${util.largura}px; height: ${util.altura}px;
     color: transparent;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 4px; line-height: 1.15;
     overflow: hidden;
     z-index: 2;
+  }
+  /* Cada trecho reconhecido ganha a sua faixa de altura, na proporção da
+     ordem de leitura — ver o comentário em htmlCamadaOcr. */
+  .ocr-linha {
+    position: absolute;
+    left: 0; width: 100%;
+    font-size: 6px; line-height: 1.1;
+    white-space: pre-wrap;
   }
 </style></head><body>${paginas}</body></html>`;
 }

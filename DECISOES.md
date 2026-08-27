@@ -32,7 +32,7 @@ visual da seleção com a imagem. Tudo isso está isolado em
 está 95% entregue, e B é a única opção que mexe no tamanho do binário e no
 risco de New Architecture.
 
-### Q2 — importar PDF ficou de fora
+### ~~Q2~~ — importar PDF ficou de fora · **DECIDIDO: fica fora** (27/08)
 
 O item **D3 do escopo** diz "importar imagens **e PDFs** do app Arquivos". Só as
 imagens foram implementadas: transformar página de PDF em imagem exige um
@@ -47,24 +47,32 @@ roadmap e assumir que o app é papel → PDF, não PDF → PDF.
 
 **Minha recomendação: (3).** O cenário que motivou o app é papel na mão.
 
-### Q3 — prévia do PDF não renderiza a página
+### ~~Q3~~ — prévia do PDF não renderiza a página · **DECIDIDO: fica como está** (27/08)
 
 A tela 10.11 mostra os dados do arquivo e abre a visualização **no sistema**,
 que já tem visualizador nativo. Renderizar dentro do app exige a mesma
 dependência de visualizador da Q2. Mesma recomendação: deixar como está.
 
-### Q4 — reordenar por arrastar
+### ~~Q4~~ — reordenar por arrastar · **DECIDIDO: fica como está por enquanto** (27/08)
 
 A montagem reordena por **setas ◀ ▶** na barra de ferramentas da página
 selecionada, não por arrastar. O critério 8.3.2 pede arrastar. Funciona, mas
 não é o gesto especificado. Implementar arrastar é ~100 linhas com
 `reanimated` + `gesture-handler`, e é difícil de verificar sem device.
 
-### Q5 — as três de sempre
+### ~~Q5~~ — lançamento e ícone · **DECIDIDO** (27/08)
 
-Continuam abertas as perguntas 25.Q3 (lançar nas duas lojas juntas ou iOS
-primeiro), 25.Q4 (ícone: encomendado ou gerado) e 25.Q5 (menção cruzada ao
-Quando Vence?).
+- **iOS primeiro**, Android depois.
+- **Ícone:** folha branca com canto dobrado sobre azul de sistema, com tarja
+  vermelha escrita **PDF**. Já está em `assets/icon.png`.
+- Continua aberta só a 25.Q5 do spec (menção cruzada ao Quando Vence?), que
+  não bloqueia nada.
+
+### Q1 continua aberta — e ganhou uma melhoria
+
+Ver a seção 1 acima. Desde então a camada de OCR passou a **espalhar os
+trechos verticalmente na ordem de leitura**, o que faz o realce da busca cair
+na altura aproximadamente certa da página em vez de sempre no topo.
 
 ---
 
