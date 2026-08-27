@@ -86,5 +86,11 @@ export const CHAVES_PREFERENCIA = {
   tamanho_papel_padrao: 'a4',
   filtro_padrao: 'original',
   total_pdfs_gerados: '0',
+  /**
+   * Se o pedido de avaliação na loja já foi feito. A regra 11.12 exige
+   * "nunca foi pedido antes", e sem esta chave não haveria como cumprir —
+   * a tabela 7.3 do spec foi corrigida junto (ver DECISOES.md).
+   */
+  avaliacao_pedida: '0',
 } as const;
 export type ChavePreferencia = keyof typeof CHAVES_PREFERENCIA;

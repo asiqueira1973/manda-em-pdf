@@ -35,12 +35,13 @@ Table documentos {
 //   tamanho_papel_padrao  'a4' | 'carta'                                   default 'a4'
 //   filtro_padrao         'original' | 'pb' | 'cinza' | 'clarear'          default 'original'
 //   total_pdfs_gerados    número como texto                                default '0'  (só para a regra 11.12 — NUNCA gate de pagamento)
+//   avaliacao_pedida      '0' | '1'                                        default '0'  (regra 11.12 — pedir avaliação uma vez só)
 Table preferencias {
   chave          text    [pk]
   valor          text    [not null, note: 'valor serializado como texto; o código converte na leitura']
   atualizado_em  integer [not null, note: 'epoch em milissegundos; default = agora']
 
-  Note: 'Configuração do app em chave-valor. Semeada na primeira execução com as 5 chaves e defaults da seção 7.3.'
+  Note: 'Configuração do app em chave-valor. Semeada na primeira execução com as 6 chaves e defaults da seção 7.3.'
 }
 
 // ------------------------------------------------------------

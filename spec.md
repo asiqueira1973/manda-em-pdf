@@ -282,13 +282,14 @@ Armazenamento chave-valor da configuração do app. Uma linha por chave.
 | `tamanho_papel_padrao` | `'a4'` \| `'carta'` | `'a4'` | Último tamanho escolhido. |
 | `filtro_padrao` | `'original'` \| `'pb'` \| `'cinza'` \| `'clarear'` | `'original'` | Último filtro escolhido. |
 | `total_pdfs_gerados` | número como texto | `'0'` | Contador acumulado, só para decidir quando pedir avaliação na loja (regra 11.12). **Nunca usado como gate de pagamento** (P4). |
+| `avaliacao_pedida` | `'0'` \| `'1'` | `'0'` | Se o pedido de avaliação já foi feito. A regra 11.12 exige "nunca foi pedido antes" — sem esta chave a regra não teria como ser cumprida. |
 
 **Exclusão:** não se apaga linha de `preferencias`; sobrescreve-se o valor. "Apagar tudo" (épico 8.10) restaura os defaults.
 
 ### 7.4 Migrations e seed
 
 - Migrations versionadas por **Drizzle Kit** (`npm run db:generate`), aplicadas na abertura do app, igual ao Hora do Remédio.
-- **Seed:** na primeira execução, inserir as cinco chaves de `preferencias` com os defaults da tabela acima. `documentos` nasce vazia.
+- **Seed:** na primeira execução, inserir as seis chaves de `preferencias` com os defaults da tabela acima. `documentos` nasce vazia.
 
 ### 7.5 Trade-off declarado — não guardamos as páginas de origem
 
@@ -313,7 +314,7 @@ Implementar **nesta ordem**. Cada épico só começa quando o anterior passou em
 **Critérios de aceite**
 1. `npm run typecheck` termina sem erro.
 2. `npx expo run:ios` abre o app no simulador; `npx expo run:android` abre no emulador.
-3. Na primeira abertura, o banco é criado e `preferencias` contém exatamente as 5 chaves da seção 7.3 com os valores default.
+3. Na primeira abertura, o banco é criado e `preferencias` contém exatamente as 6 chaves da seção 7.3 com os valores default.
 4. Fechar e reabrir o app não recria nem duplica as linhas de `preferencias`.
 5. Alternar o tema do sistema entre claro e escuro troca as cores do app sem reiniciar.
 6. **V1** — um botão de teste abre o scanner nativo nas duas plataformas e devolve ao console os caminhos das imagens capturadas.

@@ -1,3 +1,4 @@
+import type { FilterFunction } from 'react-native';
 import type { Filtro } from './regras';
 
 /**
@@ -33,7 +34,7 @@ export function filtroCss(filtro: Filtro): string {
 }
 
 /** Mesmo filtro no formato de estilo do React Native, para a prévia na tela. */
-export function filtroRn(filtro: Filtro): Array<Record<string, number>> {
+export function filtroRn(filtro: Filtro): ReadonlyArray<FilterFunction> {
   switch (filtro) {
     case 'original':
       return [];
