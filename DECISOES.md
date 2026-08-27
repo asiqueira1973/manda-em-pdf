@@ -151,8 +151,11 @@ não diz nada sobre a causa. Vale colocar `export LANG=en_US.UTF-8` no `~/.zshrc
 | Seed das preferências (6 chaves) | ✅ |
 | Permissão de fotos com texto em português | ✅ |
 
-**Não verificado ainda:** V3 (texto transparente sobrevive como texto no PDF),
-câmera real, compra em sandbox, Android, acessibilidade, modo escuro em uso.
+| **V3** — texto transparente vira texto real no PDF | ✅ **VERIFICADO em 27/08.** O PDF sai com Helvetica embutida e 16 blocos de texto invisível; buscar "contrato", "aluguel", "Augusta" e "assinatura" acha todos. O OCR da Apple leu a página de teste quase sem erro. |
+| Gate do OCR com a compra ativa | ✅ interruptor habilitado e sem selo |
+
+**Não verificado ainda:** câmera real, compra em sandbox, Android em execução,
+acessibilidade, modo escuro em uso.
 
 ---
 
