@@ -34,7 +34,7 @@ export function filtroCss(filtro: Filtro): string {
 }
 
 /** Mesmo filtro no formato de estilo do React Native, para a prévia na tela. */
-export function filtroRn(filtro: Filtro): ReadonlyArray<FilterFunction> {
+export function filtroRn(filtro: Filtro): readonly FilterFunction[] {
   switch (filtro) {
     case 'original':
       return [];

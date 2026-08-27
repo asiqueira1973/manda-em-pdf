@@ -94,7 +94,7 @@ export default function Montagem() {
           paginas,
           paginasProntas,
           tipo: sessao.tipo,
-          filtroDe: (p) => filtroDaPagina(p.id, sessao.filtro, {}),
+          filtroDe: (p) => filtroDaPagina(p.id, sessao.filtro, sessao.filtroPorPagina),
           tamanhoPapel: sessao.opcoes.tamanhoPapel,
           orientacao: sessao.opcoes.orientacao,
           ocr: sessao.opcoes.ocr && comprado,
@@ -147,7 +147,7 @@ export default function Montagem() {
               >
                 {/* O filtro vai na View e não na Image: no React Native o
                     estilo `filter` existe em ViewStyle, não em ImageStyle. */}
-                <View style={{ ...StyleSheet.absoluteFillObject, filter: filtroRn(sessao.filtro) }}>
+                <View style={{ ...StyleSheet.absoluteFillObject, filter: filtroRn(filtroDaPagina(p.id, sessao.filtro, sessao.filtroPorPagina)) }}>
                   <Image source={{ uri: p.uri }} resizeMode="cover" style={StyleSheet.absoluteFill} />
                 </View>
                 <View style={est.numero}>

@@ -26,6 +26,8 @@ type Contexto = {
   paginas: Pagina[];
   tipo: TipoDocumento;
   filtro: Filtro;
+  /** Filtro escolhido só para uma página; o resto usa `filtro` (8.3.4). */
+  filtroPorPagina: Record<string, Filtro>;
   opcoes: OpcoesSaida;
   /** Quantas páginas ainda cabem antes do limite de 50 (tabela 11.3). */
   restante: number;
@@ -126,6 +128,7 @@ export function SessaoProvider({ children }: { children: ReactNode }) {
       paginas,
       tipo,
       filtro,
+      filtroPorPagina,
       opcoes,
       restante: MAX_PAGINAS - paginas.length,
       iniciar,
@@ -137,7 +140,7 @@ export function SessaoProvider({ children }: { children: ReactNode }) {
       definirOpcoes,
       descartar,
     }),
-    [paginas, tipo, filtro, opcoes, iniciar, adicionar, substituir, remover, reordenar, definirFiltro, definirOpcoes, descartar],
+    [paginas, tipo, filtro, filtroPorPagina, opcoes, iniciar, adicionar, substituir, remover, reordenar, definirFiltro, definirOpcoes, descartar],
   );
 
   return <Ctx.Provider value={valor}>{children}</Ctx.Provider>;

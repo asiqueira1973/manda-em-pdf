@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 import { BotaoPrimario, Tela } from '@/components/base';
 import { useCompra } from '@/features/compra/CompraProvider';
 import { T } from '@/strings';
-import { ESPACO, MARGEM_LATERAL, RAIO, TIPO, useTema } from '@/theme';
+import { ESPACO, MARGEM_LATERAL, TIPO, useTema } from '@/theme';
 
 /**
  * Paywall (tela 10.7).
