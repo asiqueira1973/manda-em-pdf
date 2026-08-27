@@ -98,7 +98,12 @@ export default function Home() {
               ]}
             >
               <Ionicons name={ICONE_PRESET[p.tipo] ?? 'document-outline'} size={24} color={t.acao} />
-              <Text style={[TIPO.subtitulo, { color: t.texto, fontWeight: '600' }]}>
+              {/* Duas linhas com entrelinha apertada: "Procuração" e "Nota
+                  fiscal" não cabem numa linha só na largura do cartão. */}
+              <Text
+                numberOfLines={2}
+                style={[TIPO.rodape, { color: t.texto, fontWeight: '600', lineHeight: 16 }]}
+              >
                 {T.presets[p.tipo as keyof typeof T.presets]}
               </Text>
             </Pressable>
@@ -175,7 +180,7 @@ const est = StyleSheet.create({
     paddingBottom: ESPACO.sm + 2,
   },
   cartao: {
-    width: 100,
+    width: 104,
     height: 100,
     borderRadius: RAIO.cartao,
     padding: ESPACO.md,

@@ -70,8 +70,8 @@ function htmlPaginaFaces(p: PaginaParaPdf): string {
     .map(
       (f) =>
         `<img src="data:image/jpeg;base64,${f.base64}" style="position:absolute;` +
-        `left:${f.retangulo.x}pt;top:${f.retangulo.y}pt;` +
-        `width:${f.retangulo.largura}pt;height:${f.retangulo.altura}pt;` +
+        `left:${f.retangulo.x}px;top:${f.retangulo.y}px;` +
+        `width:${f.retangulo.largura}px;height:${f.retangulo.altura}px;` +
         `object-fit:contain;filter:${filtroCss(p.filtro)};" />`,
     )
     .join('');
@@ -93,7 +93,16 @@ function htmlCamadaOcr(texto?: string): string {
   return `<div class="ocr">${escapar(texto)}</div>`;
 }
 
-/** Monta o documento HTML inteiro. Exportado para poder ser testado. */
+/**
+ * Monta o documento HTML inteiro. Exportado para poder ser testado.
+ *
+ * PEGADINHA (custou um bug de páginas duplicadas): o `expo-print` recebe
+ * `width`/`height` em PIXELS a 72 PPI e mapeia 1px do HTML para 1pt do PDF.
+ * O CSS aqui precisa usar `px`, NÃO `pt` — em CSS 1pt = 96/72 px, então
+ * `842pt` viraria 1122px, estouraria a altura da página e cada seção geraria
+ * DUAS páginas no PDF. Os números são os mesmos da seção 14; só a unidade
+ * muda.
+ */
 export function montarHtml(opcoes: OpcoesPdf): string {
   const { largura, altura } = dimensoesPagina(opcoes.tamanhoPapel, opcoes.orientacao);
   const util = { largura: largura - MARGEM_PT * 2, altura: altura - MARGEM_PT * 2 };
@@ -108,29 +117,29 @@ export function montarHtml(opcoes: OpcoesPdf): string {
   return `<!doctype html>
 <html><head><meta charset="utf-8" />
 <style>
-  @page { size: ${largura}pt ${altura}pt; margin: 0; }
+  @page { size: ${largura}px ${altura}px; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: ${largura}pt; }
+  html, body { width: ${largura}px; }
   .pagina {
     position: relative;
-    width: ${largura}pt; height: ${altura}pt;
-    padding: ${MARGEM_PT}pt;
+    width: ${largura}px; height: ${altura}px;
+    padding: ${MARGEM_PT}px;
     page-break-after: always; break-after: page;
     overflow: hidden;
   }
   .pagina:last-child { page-break-after: auto; break-after: auto; }
   .conteudo {
-    width: ${util.largura}pt; height: ${util.altura}pt;
+    width: ${util.largura}px; height: ${util.altura}px;
     display: flex; align-items: center; justify-content: center;
   }
   .faces { position: absolute; inset: 0; }
   .ocr {
     position: absolute;
-    left: ${MARGEM_PT}pt; top: ${MARGEM_PT}pt;
-    width: ${util.largura}pt; height: ${util.altura}pt;
+    left: ${MARGEM_PT}px; top: ${MARGEM_PT}px;
+    width: ${util.largura}px; height: ${util.altura}px;
     color: transparent;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 4pt; line-height: 1.15;
+    font-size: 4px; line-height: 1.15;
     overflow: hidden;
     z-index: 2;
   }

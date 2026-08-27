@@ -8,7 +8,10 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "bundleIdentifier": "com.dablab.mandaempdf",
       "supportsTablet": false,
@@ -22,7 +25,6 @@
     "android": {
       "package": "com.dablab.mandaempdf",
       "versionCode": 1,
-      "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -50,7 +52,9 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FFFFFF",
-          "dark": { "backgroundColor": "#000000" },
+          "dark": {
+            "backgroundColor": "#000000"
+          },
           "image": "./assets/icon.png",
           "imageWidth": 160
         }
@@ -58,12 +62,21 @@
       [
         "expo-build-properties",
         {
-          "ios": { "deploymentTarget": "15.1" },
-          "android": { "minSdkVersion": 24, "compileSdkVersion": 36, "targetSdkVersion": 36 }
+          "ios": {
+            "deploymentTarget": "15.1"
+          },
+          "android": {
+            "minSdkVersion": 24,
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36
+          }
         }
-      ]
+      ],
+      "expo-font"
     ],
-    "extra": { "router": {} },
+    "extra": {
+      "router": {}
+    },
     "owner": "alexsiq"
   }
 }
