@@ -1,8 +1,8 @@
 # Manda em PDF — guia do agente
 
 App React Native / Expo que transforma papel em PDF pronto para enviar.
-Fonte única de verdade: **`spec.md`** (SDD v1.5). Handoff da noite de
-26/08/2026 e pendências: **`DECISOES.md`**.
+Fonte única de verdade: **`spec.md`** (SDD v1.6). Decisões e pendências:
+**`DECISOES.md`**. Ficha da loja: **`app-store-connect-manda-em-pdf.md`**.
 
 ## Comandos
 
@@ -11,7 +11,7 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 export ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
 
 npm run typecheck    # obrigatório antes de dar qualquer coisa por pronta
-npm test             # 60 testes; cobre os alvos da seção 22.1 do spec
+npm test             # 61 testes; cobre os alvos da seção 22.1 do spec
 npm run lint
 npm run db:generate  # regenera as migrations quando src/db/schema.ts muda
 
@@ -79,6 +79,15 @@ src/
   theme/          tokens da seção 16
   strings/        todos os textos da seção 15
 ```
+
+## Capturas da App Store
+
+Os artboards vivem em `design-loja/` e os PNGs finais em `capturas/`
+(1242 × 2688, o formato 6.5" que o Alexandre usa). Para regerar depois de
+mexer num artboard, o caminho é: extrair o HTML de dentro do `.dc.html`
+(tirando `x-dc` e `helmet`) e renderizar com o Chrome headless em
+`--window-size=1242,2688`. O script está em
+`scratchpad/genloja.py` da sessão de 27/08.
 
 ## Regra de manutenção
 
