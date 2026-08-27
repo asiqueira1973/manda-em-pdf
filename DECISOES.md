@@ -185,6 +185,22 @@ acessibilidade, modo escuro em uso.
    pedir a sua senha da Apple** para gerar o perfil de provisionamento do app
    novo — por isso não comecei sozinho.
 
+**Capturas de tela — pendente, com dois caminhos.** A App Store exige o
+conjunto de **6.9" (1320 × 2868)**, maior que o simulador iPhone 16e usado no
+desenvolvimento. Compilei e instalei no iPhone 17 Pro Max, mas o simulador não
+renderizou (screenshot saindo com 0 byte — problema do simulador, não do app).
+Os dois caminhos para hoje à noite:
+
+1. **Capturas cruas do simulador 6.9"** — insistir no Pro Max, que já está com
+   o app instalado. É o caminho literal.
+2. **Telas de marketing montadas a partir do canvas de design** — que é o que a
+   maioria dos apps da loja realmente publica, inclusive o Scanner App que serviu
+   de referência (aquelas com "Extract and Edit Text" em cima do aparelho). As 20
+   telas do canvas estão em 393 × 852, e a proporção bate quase exatamente com
+   1320 × 2868, então escalam limpo. Este caminho dá um resultado melhor na
+   vitrine, mas é decisão de produto — que headline vai em cada tela — então
+   preferi não escolher sozinho.
+
 **Ainda não dá para submeter sem:** testar a compra em **sandbox num iPhone
 físico** (o épico 8.6 só está verificado no caminho negativo, quando a loja não
 responde) e testar o **scanner com a câmera de verdade** — o simulador não tem
