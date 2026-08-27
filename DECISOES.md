@@ -159,7 +159,38 @@ acessibilidade, modo escuro em uso.
 
 ---
 
-## 6. Sugestão de ordem para amanhã
+## 6. Versão iOS — o que já está pronto e o que depende de você
+
+**Pronto (27/08, de manhã):**
+
+- `eas.json` configurado nos moldes do Hora do Remédio.
+- Ficha completa da App Store em `app-store-connect-manda-em-pdf.md`, com todos
+  os campos medidos e dentro do limite.
+- Seção nova da Política de Privacidade escrita, deixando explícito que Firebase,
+  Crashlytics e notificações **não** se aplicam a este app — senão o documento
+  compartilhado contradiria a resposta "Data Not Collected" da ficha.
+- Ícone com a palavra PDF, 1024 opaco.
+- As pegadinhas de submissão conferidas no projeto gerado: `CFBundleIconName`,
+  `TARGETED_DEVICE_FAMILY = 1`, `ITSAppUsesNonExemptEncryption` e o
+  `PrivacyInfo.xcprivacy`.
+
+**Depende de você, nesta ordem:**
+
+1. **Criar o app no App Store Connect** com o bundle `com.dablab.mandaempdf`.
+   Isso gera o `ascAppId`, que hoje está com um placeholder no `eas.json`.
+2. **Criar o produto de compra** `com.dablab.mandaempdf.completo`
+   (não-consumível, R$ 29,90). Os textos estão na seção 5 da ficha.
+3. **Colar a seção nova** no documento de Política de Privacidade do Notion.
+4. Depois disso eu rodo o `eas build --profile production`. **Esse passo pode
+   pedir a sua senha da Apple** para gerar o perfil de provisionamento do app
+   novo — por isso não comecei sozinho.
+
+**Ainda não dá para submeter sem:** testar a compra em **sandbox num iPhone
+físico** (o épico 8.6 só está verificado no caminho negativo, quando a loja não
+responde) e testar o **scanner com a câmera de verdade** — o simulador não tem
+câmera, então a função principal do app nunca rodou de fato.
+
+## 7. Sugestão de ordem para amanhã
 
 1. Decidir **Q1** (é o que destrava o épico 8.8 fechar de vez).
 2. Rodar no **emulador Android** — só o build foi verificado, o app nunca
