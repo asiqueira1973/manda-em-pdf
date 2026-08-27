@@ -1,0 +1,15 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",          "title": "1 · Pediram em PDF",        "x": 0,    "y": 0, "w": 1242, "h": 2688 },
+    { "file": "Contrato.dc.html",      "title": "2 · Contrato inteiro",      "x": 1362, "y": 0, "w": 1242, "h": 2688 },
+    { "file": "Tamanho.dc.html",       "title": "3 · Só aceita 5 MB",        "x": 2724, "y": 0, "w": 1242, "h": 2688 },
+    { "file": "Privacidade.dc.html",   "title": "4 · Não sai do iPhone",     "x": 4086, "y": 0, "w": 1242, "h": 2688 },
+    { "file": "Compartilhar.dc.html",  "title": "5 · Pronto pra mandar",     "x": 5448, "y": 0, "w": 1242, "h": 2688 },
+    { "file": "Compra.dc.html",        "title": "6 · Uma compra, pra sempre","x": 6810, "y": 0, "w": 1242, "h": 2688 }
+  ],
+  "annotations": [
+    { "id": "nota-escolha", "x": 0, "y": -260, "w": 1100,
+      "text": "Seis opções de captura para a App Store, 6.5\" (1242 × 2688) — escolha 5.\n\nA ordem na loja importa: a primeira é a que mais gente vê, e a última quase ninguém rola até lá. A sequência aqui está pensada como um argumento: a dor (1), o caso de uso principal (2), a dor específica que ninguém resolve (3), a objeção de confiança (4), o desfecho (5) e o preço (6).\n\nSe for cortar uma, a candidata é a 5 — ela repete visualmente a 1." }
+  ],
+  "launch": { "view": "canvas" }
+}

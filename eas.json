@@ -8,11 +8,15 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "ios": { "simulator": false }
+      "ios": {
+        "simulator": false
+      }
     },
     "preview": {
       "distribution": "internal",
-      "ios": { "simulator": false }
+      "ios": {
+        "simulator": false
+      }
     },
     "production": {
       "autoIncrement": true
@@ -24,7 +28,7 @@
         "ascApiKeyPath": "./secrets/AuthKey_STNQW83D6N.p8",
         "ascApiKeyId": "STNQW83D6N",
         "ascApiKeyIssuerId": "90de25b0-42e2-4dd2-bd6a-dc601a2d661c",
-        "ascAppId": "PREENCHER_APOS_CRIAR_O_APP_NO_APP_STORE_CONNECT"
+        "ascAppId": "6806063899"
       }
     }
   }

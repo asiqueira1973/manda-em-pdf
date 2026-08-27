@@ -12,4 +12,7 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+
+# Chaves da App Store Connect ficam aqui e NUNCA vao para o repositorio.
+secrets/
 .env*.local
