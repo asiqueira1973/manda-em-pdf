@@ -1,0 +1,79 @@
+// ============================================================
+// Manda em PDF — modelo de dados (seção 7 do spec.md)
+// Banco local SQLite (expo-sqlite) acessado por Drizzle ORM.
+// Nomes em português, snake_case (seção 18.1).
+// Gerado a partir da seção 7 — não editar sem atualizar o spec.
+// ============================================================
+
+// Histórico dos PDFs gerados. Uma linha por PDF produzido pelo app.
+// Estratégia de exclusão: HARD DELETE — apagar a linha apaga o arquivo
+// do disco, nessa ordem (regra 11.8). Nada referencia esta tabela.
+Table documentos {
+  id              text    [pk, note: 'uuid gerado no app']
+  nome_arquivo    text    [not null, note: 'nome exibido e nome no disco, com extensão .pdf (regra 11.7)']
+  caminho_arquivo text    [not null, unique, note: 'caminho RELATIVO dentro do diretório de documentos do app — nunca absoluto']
+  total_paginas   integer [not null, note: 'CHECK (total_paginas >= 1)']
+  tamanho_bytes   integer [not null, note: 'CHECK (tamanho_bytes > 0)']
+  tipo_documento  tipo_documento [not null, default: 'livre', note: 'preset usado; livre quando não houve preset']
+  tem_ocr         integer [not null, default: 0, note: '0 ou 1 — 1 se o PDF tem camada de texto pesquisável']
+  orientacao      orientacao [not null, default: 'retrato']
+  tamanho_papel   tamanho_papel [not null, default: 'a4']
+  criado_em       integer [not null, note: 'epoch em milissegundos; default = agora']
+
+  Note: 'Histórico de PDFs gerados. O app NÃO guarda as páginas de origem (trade-off declarado em 7.5) — por isso não existe tabela de páginas e não é possível reeditar um PDF já gerado.'
+
+  Indexes {
+    criado_em [name: 'idx_documentos_criado_em', note: 'ordenação DESC — única ordenação usada pelo histórico']
+  }
+}
+
+// Armazenamento chave-valor da configuração do app. Uma linha por chave.
+// Não se apaga linha: sobrescreve-se o valor. "Apagar tudo" restaura os defaults.
+// Chaves previstas (seção 7.3):
+//   onboarding_visto      '0' | '1'                                        default '0'
+//   compra_liberada       '0' | '1'                                        default '0'  (cache; a loja é a fonte de verdade — regra 11.4)
+//   tamanho_papel_padrao  'a4' | 'carta'                                   default 'a4'
+//   filtro_padrao         'original' | 'pb' | 'cinza' | 'clarear'          default 'original'
+//   total_pdfs_gerados    número como texto                                default '0'  (só para a regra 11.12 — NUNCA gate de pagamento)
+Table preferencias {
+  chave          text    [pk]
+  valor          text    [not null, note: 'valor serializado como texto; o código converte na leitura']
+  atualizado_em  integer [not null, note: 'epoch em milissegundos; default = agora']
+
+  Note: 'Configuração do app em chave-valor. Semeada na primeira execução com as 5 chaves e defaults da seção 7.3.'
+}
+
+// ------------------------------------------------------------
+// Enums (seção 7.2)
+// ------------------------------------------------------------
+
+enum tipo_documento {
+  livre
+  contrato
+  imovel
+  procuracao
+  nota_fiscal
+  boleto
+  rg
+  cnh
+  certidao
+  recibo
+  comprovante
+}
+
+enum orientacao {
+  retrato
+  paisagem
+}
+
+enum tamanho_papel {
+  a4
+  carta
+}
+
+// ------------------------------------------------------------
+// Relacionamentos: NÃO EXISTEM.
+// documentos e preferencias são independentes. É intencional —
+// ver o diagrama em 7.1 e o trade-off em 7.5.
+// A tabela paginas_documento só entra na v2 (roadmap 28.4).
+// ------------------------------------------------------------

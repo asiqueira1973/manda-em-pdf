@@ -1,0 +1,228 @@
+{
+  "pages": [
+    {
+      "id": "caminho",
+      "name": "Caminho principal"
+    },
+    {
+      "id": "apoio",
+      "name": "Telas de apoio"
+    },
+    {
+      "id": "escuro",
+      "name": "Tema escuro"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "1 · Home",
+      "page": "caminho",
+      "x": 0,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Origem.dc.html",
+      "title": "2 · Origem",
+      "page": "caminho",
+      "x": 453,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Scanner.dc.html",
+      "title": "3 · Scanner (sistema)",
+      "page": "caminho",
+      "x": 906,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Montagem.dc.html",
+      "title": "4 · Montagem",
+      "page": "caminho",
+      "x": 1359,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Gerando.dc.html",
+      "title": "5 · Gerando",
+      "page": "caminho",
+      "x": 1812,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Pronto.dc.html",
+      "title": "6 · Pronto",
+      "page": "caminho",
+      "x": 2265,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Compartilhar.dc.html",
+      "title": "7 · Compartilhar (sistema)",
+      "page": "caminho",
+      "x": 2718,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "HomeVazia.dc.html",
+      "title": "Home — estado vazio",
+      "page": "apoio",
+      "x": 0,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "CapturaLote.dc.html",
+      "w": 393,
+      "h": 852,
+      "page": "apoio",
+      "x": 453,
+      "y": 0,
+      "title": "Captura em lote (contrato, imóvel)"
+    },
+    {
+      "file": "PresetCaptura.dc.html",
+      "title": "Captura guiada (RG, CNH)",
+      "page": "apoio",
+      "x": 906,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "EditorPagina.dc.html",
+      "title": "Editor de página",
+      "page": "apoio",
+      "x": 1359,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Opcoes.dc.html",
+      "title": "Opções de saída (opcional)",
+      "page": "apoio",
+      "x": 1812,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Paywall.dc.html",
+      "title": "Paywall",
+      "page": "apoio",
+      "x": 2265,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Historico.dc.html",
+      "title": "Histórico",
+      "page": "apoio",
+      "x": 2718,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Previa.dc.html",
+      "w": 393,
+      "h": 852,
+      "page": "apoio",
+      "x": 0,
+      "y": 990,
+      "title": "Prévia do PDF"
+    },
+    {
+      "file": "Ajustes.dc.html",
+      "title": "Ajustes",
+      "page": "apoio",
+      "x": 453,
+      "y": 990,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "Onboarding.dc.html",
+      "title": "Onboarding — 3 telas",
+      "page": "apoio",
+      "x": 906,
+      "y": 990,
+      "w": 1259,
+      "h": 852
+    },
+    {
+      "file": "MainDark.dc.html",
+      "title": "Home",
+      "page": "escuro",
+      "x": 0,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "MontagemDark.dc.html",
+      "title": "Montagem",
+      "page": "escuro",
+      "x": 453,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    },
+    {
+      "file": "ProntoDark.dc.html",
+      "title": "Pronto",
+      "page": "escuro",
+      "x": 906,
+      "y": 0,
+      "w": 393,
+      "h": 852
+    }
+  ],
+  "annotations": [
+    {
+      "id": "nota-caminho",
+      "page": "caminho",
+      "x": 0,
+      "y": -150,
+      "w": 700,
+      "text": "Caminho principal — 4 toques da Home até a folha de compartilhamento.\nNovo PDF → concluir a captura → Gerar → Compartilhar.\n\nAs telas 3 e 7 são do sistema (VisionKit/ML Kit e a share sheet). Estão aqui só para o fluxo se ler inteiro — não são desenhadas por nós."
+    },
+    {
+      "id": "nota-apoio",
+      "page": "apoio",
+      "x": 0,
+      "y": -150,
+      "w": 700,
+      "text": "Telas fora do caminho principal.\n\nOs presets são GRATUITOS: são pré-configuração (filtro, papel, nome), não capacidade nova. Contrato, Imóvel e Procuração entram em captura em lote; Nota fiscal e Boleto capturam uma página; RG e CNH guiam frente e verso — e é a FUSÃO das duas faces numa página que é paga, não a captura.\n\n\"Opções de saída\" só aparece para quem toca em Opções na Montagem."
+    },
+    {
+      "id": "nota-escuro",
+      "page": "escuro",
+      "x": 0,
+      "y": -150,
+      "w": 700,
+      "text": "Mesmas telas nas cores de sistema do modo escuro: fundo #000000, superfície #1C1C1E, ação #0A84FF, destrutivo #FF453A, divisor #38383A."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "caminho"
+  }
+}
