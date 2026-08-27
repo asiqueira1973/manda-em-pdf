@@ -185,7 +185,7 @@ alexandre@dablab.com.br
 | **Price** | R$ 29,90 (tier equivalente no Brasil) |
 | **Display Name** | Manda em PDF Completo |
 | **Description** | `Pagamento único que libera PDFs com quantas páginas precisar, ajuste de tamanho para caber no limite do site, texto pesquisável no PDF e RG e CNH frente e verso numa página só.` |
-| **Review Screenshot** | captura da tela de paywall (1320×2868) |
+| **Review Screenshot** | `capturas/iap-review-tela-de-compra.png` (1242 × 2688) — captura limpa da tela de compra, sem headline nem moldura. É um arquivo **diferente** da captura nº 6 da vitrine, que é peça de marketing. |
 
 ---
 
@@ -260,14 +260,23 @@ de texto é determinístico (framework do sistema), não é IA generativa.
 
 ## 10. Capturas de tela
 
-Obrigatório o conjunto de **6.9" (1320 × 2868)**. Sugestão de ordem, seguindo o
-canvas de telas do projeto:
+Prontas em `capturas/`, no formato **6.5" (1242 × 2688)**, na ordem de upload:
 
-1. Home — o botão Novo PDF e os atalhos de documento
-2. Montagem — várias páginas de um contrato
-3. Pronto — o PDF gerado, com o botão Compartilhar
-4. Opções — o ajuste de tamanho máximo
-5. Paywall — o que a versão completa libera
+| # | Arquivo | Headline |
+|---|---|---|
+| 1 | `01-pediram-em-pdf.png` | Pediram em PDF |
+| 2 | `02-contrato-inteiro.png` | Contrato inteiro, num arquivo só |
+| 3 | `03-cabe-no-limite.png` | O site só aceita 5 MB |
+| 4 | `04-nao-sai-do-iphone.png` | Não sai do seu iPhone |
+| 5 | `05-pronto-pra-mandar.png` | Pronto pra mandar |
+| 6 | `06-uma-compra.png` | Uma compra. Pra sempre. |
+
+E, separado da vitrine, `iap-review-tela-de-compra.png` — a captura limpa que
+vai no campo **Review Screenshot** do produto de compra (seção 5).
+
+A ordem é um argumento: a dor, o caso de uso principal, a dor específica que
+ninguém resolve, a objeção de confiança, o desfecho e o preço. A primeira é a
+que quase todo mundo vê; a última, quase ninguém rola até lá.
 
 ---
 
