@@ -1,0 +1,163 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "e46379ba-df45-4f5f-80b6-d9ca0f76e70d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "documentos": {
+      "name": "documentos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nome_arquivo": {
+          "name": "nome_arquivo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "caminho_arquivo": {
+          "name": "caminho_arquivo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "total_paginas": {
+          "name": "total_paginas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tamanho_bytes": {
+          "name": "tamanho_bytes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo_documento": {
+          "name": "tipo_documento",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'livre'"
+        },
+        "tem_ocr": {
+          "name": "tem_ocr",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "orientacao": {
+          "name": "orientacao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'retrato'"
+        },
+        "tamanho_papel": {
+          "name": "tamanho_papel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'a4'"
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch() * 1000)"
+        }
+      },
+      "indexes": {
+        "documentos_caminho_arquivo_unique": {
+          "name": "documentos_caminho_arquivo_unique",
+          "columns": [
+            "caminho_arquivo"
+          ],
+          "isUnique": true
+        },
+        "idx_documentos_criado_em": {
+          "name": "idx_documentos_criado_em",
+          "columns": [
+            "criado_em"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "documentos_total_paginas_min": {
+          "name": "documentos_total_paginas_min",
+          "value": "\"documentos\".\"total_paginas\" >= 1"
+        },
+        "documentos_tamanho_bytes_min": {
+          "name": "documentos_tamanho_bytes_min",
+          "value": "\"documentos\".\"tamanho_bytes\" > 0"
+        },
+        "documentos_tem_ocr_bool": {
+          "name": "documentos_tem_ocr_bool",
+          "value": "\"documentos\".\"tem_ocr\" in (0, 1)"
+        }
+      }
+    },
+    "preferencias": {
+      "name": "preferencias",
+      "columns": {
+        "chave": {
+          "name": "chave",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "valor": {
+          "name": "valor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "atualizado_em": {
+          "name": "atualizado_em",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch() * 1000)"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

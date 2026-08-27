@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "Manda em PDF",
+    "slug": "manda-em-pdf",
+    "version": "1.0.0",
+    "scheme": "mandaempdf",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "com.dablab.mandaempdf",
+      "supportsTablet": false,
+      "requireFullScreen": true,
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleIconName": "AppIcon"
+      }
+    },
+    "android": {
+      "package": "com.dablab.mandaempdf",
+      "versionCode": 1,
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-localization",
+      "expo-sharing",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O app precisa das suas fotos para transformar imagens em PDF.",
+          "cameraPermission": "O app precisa da câmera para escanear documentos."
+        }
+      ],
+      [
+        "react-native-document-scanner-plugin",
+        {
+          "cameraPermission": "O app precisa da câmera para escanear documentos."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "dark": { "backgroundColor": "#000000" },
+          "image": "./assets/icon.png",
+          "imageWidth": 160
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": { "deploymentTarget": "15.1" },
+          "android": { "minSdkVersion": 24, "compileSdkVersion": 36, "targetSdkVersion": 36 }
+        }
+      ]
+    ],
+    "extra": { "router": {} },
+    "owner": "alexsiq"
+  }
+}
