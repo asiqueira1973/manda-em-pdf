@@ -72,7 +72,8 @@
           }
         }
       ],
-      "expo-font"
+      "expo-font",
+      "./plugins/withPropriedadesGradle"
     ],
     "extra": {
       "router": {}

@@ -81,7 +81,37 @@ Quando Vence?).
 
 ---
 
-## 3. Pegadinha do ambiente
+## 3. Android: três coisas que a máquina precisava
+
+O Android **compila** (`BUILD SUCCESSFUL`, APK gerado, o plugin do scanner
+entrou). Mas o caminho até lá teve três obstáculos, todos já resolvidos e
+tornados duráveis:
+
+1. **Faltava JDK 17.** A máquina tinha 21 e 25; o `@react-native/gradle-plugin`
+   compila com `languageVersion 17` e o build morria antes de começar.
+   Instalado via `brew install openjdk@17`.
+2. **O plugin foojay-resolver é incompatível com o Gradle 9.** Ele baixaria o
+   JDK sozinho, mas usa `JvmVendorSpec.IBM_SEMERU`, removido no Gradle 9 — que
+   é o que o Expo SDK 55 fixa. É um **bug upstream do RN 0.83.2**. Desativado
+   por patch (`patches/@react-native+gradle-plugin+0.83.2.patch`, aplicado no
+   `postinstall` via `patch-package`).
+3. **As propriedades de Gradle se perdiam a cada prebuild.** Viraram um config
+   plugin próprio, `plugins/withPropriedadesGradle.js`, que aponta os JDKs do
+   Homebrew e desliga o download automático. Verificado: sobrevive ao
+   `expo prebuild`.
+
+**Ainda não rodou em emulador.** O AVD `Pixel_10` está quebrado — aponta para
+uma imagem de sistema (`android-37.2-beta3`) que não existe mais no SDK. O AVD
+`iseelife_test` funciona, mas é `android-35/default`, **sem Google Play
+Services** — e o ML Kit Document Scanner exige Play Services (risco R2 do
+spec). Para testar o scanner no Android é preciso um AVD com Play Store ou um
+aparelho real.
+
+O APK debug saiu com **219 MB**, o que é normal em debug (todas as ABIs mais as
+ferramentas de desenvolvimento). O limite de 60 MB da §17.4 vale para o
+release com split por ABI — a verificar no épico 8.11.
+
+## 4. Pegadinha do ambiente
 
 O CocoaPods desta máquina quebra sem locale UTF-8. **Todo comando que toca
 pods precisa de `LANG`:**
@@ -95,11 +125,12 @@ não diz nada sobre a causa. Vale colocar `export LANG=en_US.UTF-8` no `~/.zshrc
 
 ---
 
-## 4. O que foi verificado ao vivo no simulador
+## 5. O que foi verificado ao vivo no simulador
 
 | Verificado | Resultado |
 |---|---|
 | Build iOS (SDK 55, New Architecture) | ✅ 0 erros |
+| Build Android (Gradle 9, JDK 17) | ✅ `BUILD SUCCESSFUL`, APK gerado |
 | Plugin do scanner compila (validação **V1**, parcial) | ✅ compila e linka; falta disparar a câmera em device |
 | Onboarding, Home, Origem, Montagem, Paywall, Pronto | ✅ renderizam conforme o desenho |
 | Importar 3 fotos da galeria | ✅ 3 páginas na ordem certa |
@@ -117,10 +148,12 @@ câmera real, compra em sandbox, Android, acessibilidade, modo escuro em uso.
 
 ---
 
-## 5. Sugestão de ordem para amanhã
+## 6. Sugestão de ordem para amanhã
 
 1. Decidir **Q1** (é o que destrava o épico 8.8 fechar de vez).
-2. Rodar no **emulador Android** — nada foi verificado lá ainda.
+2. Rodar no **emulador Android** — só o build foi verificado, o app nunca
+   abriu. Precisa de um AVD novo **com Google Play Services** (o `Pixel_10`
+   está quebrado e o `iseelife_test` não tem Play Services).
 3. Testar o **scanner de verdade** em iPhone físico (fecha a validação V1).
 4. Criar o produto `com.dablab.mandaempdf.completo` nos dois consoles e testar
    a compra em sandbox (épico 8.6 só está verificado no caminho negativo).

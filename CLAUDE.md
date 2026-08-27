@@ -7,6 +7,9 @@ Fonte única de verdade: **`spec.md`** (SDD v1.5). Handoff da noite de
 ## Comandos
 
 ```bash
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+export ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
+
 npm run typecheck    # obrigatório antes de dar qualquer coisa por pronta
 npm test             # 60 testes; cobre os alvos da seção 22.1 do spec
 npm run lint
@@ -38,7 +41,15 @@ LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 npx expo run:android
     o código de barras.
 11. **`react-native-worklets` fica em 0.7.x.** A 0.8.x quebra o Reanimated 4.2.1
     e o `pod install` falha.
-12. **Nada de biblioteca com acesso à rede** além do `expo-iap`. Qualquer SDK
+12. **O Android precisa de JDK 17** (não 21, não 25) — é o que o
+    `@react-native/gradle-plugin` compila. E o patch em
+    `patches/@react-native+gradle-plugin+0.83.2.patch` **não pode ser
+    removido**: sem ele o Gradle 9 quebra no foojay-resolver. Ele é aplicado
+    pelo `postinstall`; se algum dia o `npm install` reclamar dele, leia o
+    `DECISOES.md` antes de apagar.
+13. **`plugins/withPropriedadesGradle.js` é obrigatório** — sem ele as
+    propriedades de Gradle se perdem a cada `expo prebuild`.
+14. **Nada de biblioteca com acesso à rede** além do `expo-iap`. Qualquer SDK
     com rede quebra a declaração "Data Not Collected" das duas lojas (§20.5).
 
 ## Convenções
