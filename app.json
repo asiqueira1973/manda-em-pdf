@@ -28,7 +28,10 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -76,7 +79,10 @@
       "./plugins/withPropriedadesGradle"
     ],
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "bcab83cf-22c4-4b39-af38-41bed641b385"
+      }
     },
     "owner": "alexsiq"
   }
