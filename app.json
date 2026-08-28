@@ -16,7 +16,7 @@
       "bundleIdentifier": "com.dablab.mandaempdf",
       "supportsTablet": false,
       "requireFullScreen": true,
-      "buildNumber": "1",
+      "buildNumber": "2",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleIconName": "AppIcon"

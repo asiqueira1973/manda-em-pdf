@@ -1,3 +1,4 @@
+import { Image } from 'react-native';
 import { SaveFormat, manipulateAsync } from 'expo-image-manipulator';
 import { TENTATIVAS } from '@/lib/regras';
 
@@ -53,20 +54,57 @@ export async function recortar(pagina: Pagina, recorte: Recorte): Promise<Pagina
  *
  * Só reduz — nunca amplia, para não inventar pixel que não existe.
  */
+export type AcaoRedimensionar = { resize: { width: number } | { height: number } };
+
+/**
+ * Decide se e como reduzir a imagem para o lado maior alvo (tabela 11.3).
+ *
+ * Recebe: as dimensões reais em pixels e o lado maior desejado.
+ * Devolve: a lista de ações do manipulador — vazia quando a imagem já cabe.
+ *
+ * Só REDUZ, nunca amplia: ampliar inventa pixel que não existe e engorda o
+ * arquivo sem ganhar nitidez. Dimensão desconhecida (0) devolve lista vazia —
+ * quem chama tem que medir antes.
+ */
+export function acoesDeRedimensionamento(
+  largura: number,
+  altura: number,
+  ladoMaior: number,
+): AcaoRedimensionar[] {
+  if (largura <= 0 || altura <= 0) return [];
+  if (Math.max(largura, altura) <= ladoMaior) return [];
+  return [largura >= altura ? { resize: { width: ladoMaior } } : { resize: { height: ladoMaior } }];
+}
+
+/**
+ * Mede uma imagem no disco sem reprocessá-la (só lê o cabeçalho).
+ *
+ * Existe porque as páginas vindas do scanner nativo chegam sem dimensão: o
+ * plugin devolve só o caminho do arquivo. Sem medir, a redução da regra 11.3
+ * nunca acontecia e a compressão por resolução (11.10) não tinha efeito
+ * nenhum — os dois bugs que este arquivo conserta.
+ */
+export function medirImagem(uri: string): Promise<{ largura: number; altura: number }> {
+  return new Promise((resolve) => {
+    Image.getSize(
+      uri,
+      (largura, altura) => resolve({ largura, altura }),
+      () => resolve({ largura: 0, altura: 0 }),
+    );
+  });
+}
+
 export async function prepararParaPdf(
   pagina: Pagina,
   ladoMaior: number = LADO_MAIOR_PADRAO,
   qualidade: number = QUALIDADE_PADRAO,
 ): Promise<{ base64: string; largura: number; altura: number }> {
-  const maior = Math.max(pagina.largura, pagina.altura);
-  const acoes =
-    maior > ladoMaior
-      ? [
-          pagina.largura >= pagina.altura
-            ? { resize: { width: ladoMaior } }
-            : { resize: { height: ladoMaior } },
-        ]
-      : [];
+  // Defesa em profundidade: se a página chegou sem dimensão (scanner), mede
+  // aqui. Assim nenhum caminho de entrada escapa da redução da regra 11.3.
+  let { largura, altura } = pagina;
+  if (largura <= 0 || altura <= 0) ({ largura, altura } = await medirImagem(pagina.uri));
+
+  const acoes = acoesDeRedimensionamento(largura, altura, ladoMaior);
   const r = await manipulateAsync(pagina.uri, acoes, {
     compress: qualidade,
     format: SaveFormat.JPEG,

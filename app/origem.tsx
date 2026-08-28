@@ -5,6 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import type { TipoDocumento } from '@/db/schema';
 import { presetDe } from '@/lib/regras';
 import { escanear } from '@/services/scanner';
+import { medirImagem } from '@/services/pageEditor';
 import { importarDasFotos, importarDeArquivos } from '@/services/importer';
 import { useSessao } from '@/features/sessao/SessaoProvider';
 import { T } from '@/strings';
@@ -42,14 +43,17 @@ export default function Origem() {
       const max = preset?.modo === 'unica' ? 1 : restante;
       const r = await escanear(max);
       if (r.cancelado) return router.back();
+      // Medir na entrada: o scanner nativo devolve só o caminho, e sem
+      // dimensão a redução da regra 11.3 não acontece.
       seguir(
-        r.paginas.map((uri, i) => ({
-          id: `s${Date.now().toString(36)}${i}`,
-          uri,
-          largura: 0,
-          altura: 0,
-          rotacao: 0,
-        })),
+        await Promise.all(
+          r.paginas.map(async (uri, i) => ({
+            id: `s${Date.now().toString(36)}${i}`,
+            uri,
+            ...(await medirImagem(uri)),
+            rotacao: 0,
+          })),
+        ),
       );
     } catch {
       Alert.alert('', T.cameraNegada);

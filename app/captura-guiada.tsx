@@ -5,6 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { BotaoPrimario, BotaoSecundario, Tela } from '@/components/base';
 import type { TipoDocumento } from '@/db/schema';
 import { escanearUma } from '@/services/scanner';
+import { medirImagem } from '@/services/pageEditor';
 import { useSessao } from '@/features/sessao/SessaoProvider';
 import { useCompra } from '@/features/compra/CompraProvider';
 import { T } from '@/strings';
@@ -40,13 +41,15 @@ export default function CapturaGuiada() {
         router.dismissTo('/');
         return;
       }
-      const novas: Pagina[] = r.paginas.map((uri, i) => ({
-        id: `g${Date.now().toString(36)}${i}`,
-        uri,
-        largura: 0,
-        altura: 0,
-        rotacao: 0,
-      }));
+      // Medir na entrada — ver o comentário em services/pageEditor.
+      const novas: Pagina[] = await Promise.all(
+        r.paginas.map(async (uri, i) => ({
+          id: `g${Date.now().toString(36)}${i}`,
+          uri,
+          ...(await medirImagem(uri)),
+          rotacao: 0,
+        })),
+      );
       adicionar(novas);
       if (etapa === 1) setEtapa(2);
       else router.replace('/montagem');
