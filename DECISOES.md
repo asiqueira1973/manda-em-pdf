@@ -174,16 +174,26 @@ acessibilidade, modo escuro em uso.
   `TARGETED_DEVICE_FAMILY = 1`, `ITSAppUsesNonExemptEncryption` e o
   `PrivacyInfo.xcprivacy`.
 
-**Depende de você, nesta ordem:**
+**Feito por ele em 27/08:** App ID registrado no portal, app criado no App
+Store Connect (`ascAppId 6806063899`, já no `eas.json`), produto de compra
+criado, chave `.p8` copiada para `secrets/`.
 
-1. **Criar o app no App Store Connect** com o bundle `com.dablab.mandaempdf`.
-   Isso gera o `ascAppId`, que hoje está com um placeholder no `eas.json`.
-2. **Criar o produto de compra** `com.dablab.mandaempdf.completo`
-   (não-consumível, R$ 29,90). Os textos estão na seção 5 da ficha.
-3. **Colar a seção nova** no documento de Política de Privacidade do Notion.
-4. Depois disso eu rodo o `eas build --profile production`. **Esse passo pode
-   pedir a sua senha da Apple** para gerar o perfil de provisionamento do app
-   novo — por isso não comecei sozinho.
+**Feito por mim:** projeto EAS criado e vinculado
+(`bcab83cf-22c4-4b39-af38-41bed641b385`), config de build validada, as seis
+capturas 1242×2688 mais a captura limpa da tela de compra para a revisão do IAP.
+
+**O único passo que sobrou para ele:** rodar
+`npx eas-cli@latest build --platform ios --profile production` no terminal.
+O EAS precisa criar o certificado de distribuição e o perfil de
+provisionamento do bundle novo, e isso exige Apple ID + senha + 2FA. É uma
+vez só — depois o EAS guarda as credenciais na conta Expo e os builds
+seguintes rodam sem interação. O `eas submit` eu consigo rodar sozinho,
+porque usa a chave de API, não a senha.
+
+**Risco de segurança corrigido no caminho:** o `eas.json` apontava para
+`./secrets/` sem a pasta estar no `.gitignore` — a chave privada da App Store
+Connect teria ido para o repositório. Corrigido antes de a chave ser copiada,
+e conferido com `git check-ignore`.
 
 **Capturas de tela — pendente, com dois caminhos.** A App Store exige o
 conjunto de **6.9" (1320 × 2868)**, maior que o simulador iPhone 16e usado no
