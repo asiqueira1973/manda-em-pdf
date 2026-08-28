@@ -151,6 +151,7 @@ não diz nada sobre a causa. Vale colocar `export LANG=en_US.UTF-8` no `~/.zshrc
 | Seed das preferências (6 chaves) | ✅ |
 | Permissão de fotos com texto em português | ✅ |
 
+| **V1** — scanner com câmera real | ✅ **VERIFICADO em 27/08 pelo Alexandre**, no build 1.0.0(2) via TestFlight. Ficha preenchida à mão: detecção de borda, recorte e correção de perspectiva corretos, texto legível. |
 | **V3** — texto transparente vira texto real no PDF | ✅ **VERIFICADO em 27/08.** O PDF sai com Helvetica embutida e 16 blocos de texto invisível; buscar "contrato", "aluguel", "Augusta" e "assinatura" acha todos. O OCR da Apple leu a página de teste quase sem erro. |
 | Gate do OCR com a compra ativa | ✅ interruptor habilitado e sem selo |
 
