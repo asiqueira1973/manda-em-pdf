@@ -162,6 +162,29 @@ acessibilidade, modo escuro em uso.
 
 ---
 
+## 5.b Rejeição 4.2 e o que fazer se voltar
+
+**02/09/2026 — rejeitado na diretriz 4.2 (Minimum Functionality)**, revisado
+num iPad Air. Causa provável identificada: as notas de revisão originais
+ensinavam o caminho mais pobre do app ("importe duas fotos, exporte") e nunca
+citavam os presets, o scanner com detecção de borda, o piso de compressão do
+boleto nem a fusão frente e verso — tudo gratuito e tudo diferencial.
+
+Notas reescritas (`notas-revisao-app-store.txt`), resposta enviada
+(`resposta-app-review-4.2.md`), mesmo binário 1.0.0(3) reenviado.
+
+**Se rejeitar de novo, o caminho é produto, não redação.** Em ordem de força:
+
+1. **Extração de dados de nota fiscal** (roadmap 28.1) — lê valor, data e CNPJ
+   do cupom e monta relatório de despesas. É o único que responde "fazer algo
+   que não dava para fazer antes" sem espaço para discussão. Depende de o OCR
+   ler papel térmico, o que ainda não foi testado.
+2. **OCR gratuito** — a capacidade mais "app-like" que já existe pronta, e sai
+   de graça em engenharia (muda um gate). Custo: perde um dos quatro itens
+   pagos.
+3. **Suporte a iPad** — tira o eixo do aparelho em que foi revisado. Não é o
+   motivo declarado, então pode ser trabalho sem retorno.
+
 ## 6. Versão iOS — o que já está pronto e o que depende de você
 
 **Pronto (27/08, de manhã):**
