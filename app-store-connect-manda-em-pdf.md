@@ -195,36 +195,13 @@ alexandre@dablab.com.br
 
 ### Notes
 
-```
-O aplicativo não possui conta, login nem cadastro. Não há credencial de teste a fornecer e nenhum conteúdo fica atrás de autenticação.
-
-POLÍTICA DE PRIVACIDADE
-Acessível de dentro do app, em Ajustes > Política de privacidade.
-
-PERMISSÕES
-- Câmera: usada apenas para escanear documentos. A mensagem de permissão explica isso ("O app precisa da câmera para escanear documentos.").
-- Galeria de Fotos: usada apenas para importar imagens que o próprio usuário escolhe ("O app precisa das suas fotos para transformar imagens em PDF.").
-Nenhuma das duas é obrigatória: recusando ambas, o app continua funcionando pela importação de arquivos.
-
-COMO TESTAR O APP SEM COMPRAR NADA
-Gerar um PDF de até 2 páginas é gratuito e não passa por nenhum paywall. Para ver o fluxo completo:
-1. Toque em "Novo PDF" > "Escolher das Fotos" e selecione 1 ou 2 imagens.
-2. Toque em "Gerar PDF". O PDF é gerado direto, sem cobrança.
-3. Toque em "Compartilhar" para receber o arquivo.
-
-COMO TESTAR A COMPRA
-A versão completa é um pagamento único (não-consumível), sem assinatura. Ela aparece quando o usuário tenta gerar um PDF com 3 páginas ou mais:
-1. Toque em "Novo PDF" > "Escolher das Fotos" e selecione 3 ou mais imagens.
-2. Toque em "Gerar PDF" — a tela de compra aparece.
-3. Com uma conta de sandbox, toque em "Comprar" e conclua. O acesso é liberado imediatamente e a geração continua sozinha.
-O botão "Restaurar compra" está na própria tela de compra e também em Ajustes.
-
-PROCESSAMENTO LOCAL
-Todo o processamento — incluindo o reconhecimento de texto (OCR) — acontece no aparelho, usando o framework Vision da Apple. O aplicativo não possui servidor e não envia documentos para lugar nenhum. Isso pode ser verificado colocando o aparelho em modo avião: o app funciona por completo, exceto comprar e restaurar a compra.
-
-Support website: https://suportedablab.carrd.co/
-Contato: alexandre@dablab.com.br
-```
+> ⚠️ **As notas originais causaram a rejeição 4.2 de 02/09/2026.** Elas
+> ensinavam o revisor a importar duas fotos e exportar — o caminho mais pobre
+> do app — e não mencionavam os presets, o scanner nem o piso de compressão do
+> boleto. Foram substituídas.
+>
+> **Texto vigente:** `notas-revisao-app-store.txt`
+> **Resposta ao Resolution Center:** `resposta-app-review-4.2.md`
 
 ---
 

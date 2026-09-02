@@ -1,0 +1,39 @@
+Manda em PDF turns physical Brazilian paperwork into a PDF that is ready to send. It is not a generic photo-to-PDF converter: the app is built around specific document types and adapts capture, image processing, page layout and compression to each one, entirely on device.
+
+WHAT MAKES THIS APP DIFFERENT (all of the following is FREE, no purchase needed)
+
+1. DOCUMENT-TYPE PRESETS - the core of the app
+On the Home screen, tap any of: Contrato, Imovel, Procuracao, Nota fiscal, Boleto, RG, CNH.
+Each preset changes the capture mode, the image filter, the page handling and the file name:
+- Contrato / Imovel / Procuracao: continuous batch capture. The camera stays open between pages so a 30-page deed is scanned in one session.
+- Nota fiscal: high-contrast processing for faded thermal receipt paper, and the crop is NOT forced into A4 proportions, because receipts are long and narrow.
+- Boleto: preserves image quality specifically so the barcode and the digitable line remain machine-readable. Our compression stops early for this document type - a smaller but unreadable bill is useless.
+- RG / CNH: guided two-step capture ("photograph the front", "now the back").
+
+2. DOCUMENT SCANNER
+Tap "Novo PDF" > "Escanear". Automatic edge detection and perspective correction using VisionKit. Please test with the CAMERA on a real document, not with the photo library - the scanning quality is a central part of the product.
+
+3. EVERYTHING RUNS ON DEVICE
+No server, no account, no upload. Text recognition uses Apple's Vision framework locally. This can be verified in airplane mode: the entire app works, except purchasing.
+
+SUGGESTED 3-MINUTE REVIEW (no purchase required)
+1. Print or find any bill (boleto) or receipt. Tap "Boleto" on the Home screen and scan it with the camera. Note the automatic edge detection and that the barcode stays sharp.
+2. Tap "Contrato" and scan two pages in a row - notice the camera does not close between pages.
+3. Tap "RG" and follow the two-step guided capture.
+4. Compare the resulting file names: each preset names the file after the document type and date.
+
+PAID FEATURES (optional, single purchase, no subscription)
+Documents with 3+ pages, searchable-text PDF (on-device OCR), size-target compression to fit upload limits, and merging the front and back of an ID into a single page.
+To test with a sandbox account: tap "Contrato", scan 3 or more pages, tap "Gerar PDF" - the purchase screen appears. After purchase the generation resumes automatically. "Restaurar compra" is on that screen and in Settings.
+
+ACCOUNT
+The app has no account, login or registration, so there is no demo credential to provide and no content behind authentication.
+
+PERMISSIONS
+Camera - only to scan documents. Photo Library - only to import images the user selects. Both are optional; the app still works through file import if declined.
+
+PRIVACY POLICY
+Reachable inside the app: Ajustes > Politica de privacidade.
+
+Support website: https://suportedablab.carrd.co/
+Contact: alexandre@dablab.com.br
