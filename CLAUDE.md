@@ -51,6 +51,15 @@ LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 npx expo run:android
     propriedades de Gradle se perdem a cada `expo prebuild`.
 14. **Nada de biblioteca com acesso à rede** além do `expo-iap`. Qualquer SDK
     com rede quebra a declaração "Data Not Collected" das duas lojas (§20.5).
+15. **Este app NÃO tem analytics, e não é esquecimento.** Em 06/10/2026 foi
+    proposto instrumentar os eventos no Visão de Produto e a decisão foi
+    **não**. Privacidade aqui não é detalhe: é a quarta captura da vitrine
+    ("Sem nuvem, sem conta, sem upload. Nem pra gente."), um parágrafo da
+    descrição, a política de privacidade e parte da resposta que destravou a
+    rejeição 4.2. Mandar um único evento tornaria falsa a declaração da App
+    Store, que é motivo de **remoção** do app, não só de rejeição. Se alguém
+    pedir de novo: a resposta é medir pelos painéis da loja (seção 21 do spec),
+    ou instrumentar outro app.
 
 ## Convenções
 

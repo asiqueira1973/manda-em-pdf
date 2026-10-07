@@ -185,6 +185,26 @@ Notas reescritas (`notas-revisao-app-store.txt`), resposta enviada
 3. **Suporte a iPad** — tira o eixo do aparelho em que foi revisado. Não é o
    motivo declarado, então pode ser trabalho sem retorno.
 
+## 5.c Analytics: decidido que NÃO (06/10/2026)
+
+Proposta: registrar uso das principais funcionalidades no Visão de Produto.
+**Decisão: não instrumentar este app.**
+
+O motivo não é técnico. O app está publicado com cinco promessas de que não
+coleta nada — a declaração "Data Not Collected" na App Store, a política de
+privacidade ("não utiliza ferramentas de análise de uso"), a captura nº 4 da
+vitrine ("Nem pra gente"), as notas de revisão (funciona em modo avião) e a
+regra 14 do CLAUDE.md. Um único evento enviado torna todas falsas, e
+declaração de privacidade falsa é motivo de remoção do app.
+
+Além disso: sem servidor, a chave de ingestão iria dentro do binário, de onde
+qualquer pessoa consegue extrair e injetar evento falso.
+
+**O que fazer no lugar:** medir pelos painéis das lojas, como a seção 21 do
+spec já previa — instalações, conversão da compra, nota e travamentos. Se for
+preciso aprender a usar o Visão de Produto, instrumentar um app em que
+privacidade não seja o argumento de venda.
+
 ## 6. Versão iOS — o que já está pronto e o que depende de você
 
 **Pronto (27/08, de manhã):**
