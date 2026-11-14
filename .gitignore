@@ -16,3 +16,13 @@ npm-debug.*
 # Chaves da App Store Connect ficam aqui e NUNCA vao para o repositorio.
 secrets/
 .env*.local
+
+# --- Segredos e credenciais (nunca versionar) ---
+.env
+.env.*
+!.env.example
+GoogleService-Info.plist
+google-services.json
+*.keystore
+key.properties
+local.properties
