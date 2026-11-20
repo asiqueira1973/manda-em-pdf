@@ -1,26 +1,44 @@
 # Manda em PDF
 
-App que transforma papel em PDF pronto para enviar — contrato, escritura, matrícula de imóvel, procuração, nota fiscal, boleto, certidão — com tudo processado no aparelho: sem servidor, sem conta, sem upload.
-
-[Baixar na App Store](https://apps.apple.com/br/app/manda-em-pdf/id6806063899)
-
-<p>
-  <img src="capturas/01-pediram-em-pdf.png" width="160" alt="Pediram em PDF">
-  <img src="capturas/02-contrato-inteiro.png" width="160" alt="Contrato inteiro">
-  <img src="capturas/03-cabe-no-limite.png" width="160" alt="Cabe no limite">
-  <img src="capturas/04-nao-sai-do-iphone.png" width="160" alt="Não sai do iPhone">
-  <img src="capturas/05-pronto-pra-mandar.png" width="160" alt="Pronto pra mandar">
+<p align="center">
+  <img src="capturas/01-pediram-em-pdf.png" width="30%" alt="Pediram em PDF. A tela inicial do app, com o botão Novo PDF em destaque, os atalhos por tipo de documento — Contrato, Imóvel, Procuração, Nota fiscal — e a lista dos PDFs gerados recentemente">
+  &nbsp;
+  <img src="capturas/02-contrato-inteiro.png" width="30%" alt="Contrato inteiro, num arquivo só. A tela de montagem com nove páginas escaneadas em miniatura e o botão Gerar PDF; a câmera não fecha entre as páginas">
+  &nbsp;
+  <img src="capturas/04-nao-sai-do-iphone.png" width="30%" alt="Não sai do seu iPhone. A tela que explica que os documentos são processados dentro do aparelho, sem nuvem, sem conta e sem upload">
 </p>
 
-## Principais funcionalidades
+<p align="center">
+  <a href="https://apps.apple.com/br/app/manda-em-pdf/id6806063899"><b>Baixar na App Store</b></a> ·
+  <a href="spec.md">Especificação</a> ·
+  <a href="LICENSE">Licença</a>
+</p>
 
-- Captura pela câmera com detecção de bordas e correção de perspectiva; importação de imagens das Fotos e do app Arquivos.
-- Montagem do documento: reordenar, girar, recortar e excluir páginas; filtros (original, preto e branco, escala de cinza, clarear).
-- Geração do PDF em A4 ou Carta, retrato ou paisagem, e envio pela folha de compartilhamento nativa.
-- Presets por tipo de documento (contrato, imóvel, procuração, nota fiscal, boleto, RG, CNH), já com filtro, papel e nome certos.
-- Histórico dos PDFs gerados, com reenviar e apagar.
-- Grátis para PDFs de 1 ou 2 páginas, para sempre. Uma compra única libera multipágina, fusão de frente e verso, OCR (PDF pesquisável) e compressão com alvo de tamanho.
-- Sem analytics, sem conta, sem nuvem.
+O **Manda em PDF** transforma papel em PDF pronto para enviar: contrato assinado à mão, escritura e matrícula que vieram do cartório, procuração, nota fiscal em papel térmico, boleto impresso, certidão, recibo. Aponte a câmera, o app endireita a página sozinho e devolve o arquivo pronto para mandar no WhatsApp, no e-mail ou anexar naquele site que só aceita PDF.
+
+Não é um conversor genérico de foto em PDF: o app muda a forma de capturar, o filtro, o recorte e a compressão conforme o tipo de documento. Contrato e escritura capturam em lote, com a câmera aberta entre as páginas. Nota fiscal ganha contraste reforçado para papel térmico desbotado e não é forçada na proporção A4. Boleto tem piso de compressão, porque um boleto menor e ilegível não serve para nada.
+
+Tudo é processado no aparelho: sem servidor, sem conta, sem upload, sem analytics.
+
+É um produto da [Dab Lab](https://www.dablab.com.br/).
+
+## As telas do app
+
+<p align="center">
+  <img src="capturas/03-cabe-no-limite.png" width="40%" alt="O site só aceita 5 MB. A tela de tamanho máximo, com as opções Sem limite, 2 MB, 5 MB e 10 MB, e o aviso de que o app reduz a qualidade só até caber e para antes de o código de barras do boleto deixar de ser lido">
+  &nbsp;
+  <img src="capturas/05-pronto-pra-mandar.png" width="40%" alt="Pronto pra mandar. A tela final, com a prévia do PDF, o nome do arquivo, o número de páginas e o tamanho, e o botão Compartilhar em destaque">
+</p>
+
+- **Escanear** com detecção automática de borda e correção de perspectiva, ou importar imagens das Fotos e do app Arquivos.
+- **Montar o documento**: reordenar, girar, recortar e excluir páginas, com filtros (original, preto e branco, escala de cinza, clarear).
+- **Atalhos por tipo de documento** — contrato, imóvel, procuração, nota fiscal, boleto, RG, CNH — já com o filtro, o papel e o nome de arquivo certos.
+- **Gerar o PDF** em A4 ou Carta, retrato ou paisagem, e enviar pela folha de compartilhamento do sistema.
+- **Histórico** dos PDFs gerados, para reenviar sem escanear de novo.
+
+## Quanto custa
+
+PDFs de uma ou duas páginas são grátis, para sempre, sem anúncio, sem marca d'água e sem contador de uso. Uma compra única de R$ 29,90 — sem assinatura — libera documentos com quantas páginas precisar, ajuste de tamanho para caber no limite de upload do site, PDF com texto pesquisável (OCR no aparelho) e a fusão de frente e verso de RG e CNH numa página só.
 
 ## Stack técnica
 
@@ -51,10 +69,6 @@ Documentação complementar:
 ## Status
 
 Publicado na App Store (iOS). A versão Android está no código, mas não há link de loja publicado.
-
-## Licença
-
-O código está disponível apenas para leitura e estudo. Veja [LICENSE](LICENSE).
 
 ## Contribuições
 
@@ -95,6 +109,8 @@ Alterou `src/db/schema.ts`? Rode `npm run db:generate` e atualize o `.dbml`.
 
 Build e submissão por EAS (`eas.json`). A chave da App Store Connect fica em `secrets/`, que não é versionado.
 
----
+## Licença
 
-Feito pela [Dab Lab](https://www.dablab.com.br/) — product studio de software e IA que constrói apps para pequenas empresas, startups e áreas dentro de grandes empresas, partindo de uma especificação (Spec-Driven Development) e com as disciplinas de engenharia de software robusta.
+O código está aberto para leitura e estudo, nos termos do [LICENSE](LICENSE).
+
+Feito pela [Dab Lab](https://www.dablab.com.br/), product studio de software e IA que constrói apps para pequenas empresas, startups e áreas dentro de grandes empresas, partindo de uma especificação (Spec-Driven Development) e com as disciplinas de engenharia de software robusta.
